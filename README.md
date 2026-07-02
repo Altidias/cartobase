@@ -27,12 +27,12 @@ by a per-player bearer token (Will add encryption in the future)
 
 ## Data model
 
-- **crew** — a shared namespace (the equivalent of today's passphrase group).
+- **crew** — a shared namespace.
 - **token** — a bearer token bound to one crew and one player name, role
   `member` or `admin`. Members sync; admins also manage tokens and view the
   dashboard.
 - **chunk_containers** — the bitmap store described above.
-- **waypoints** — per-crew, per-world waypoints with tombstones.
+- **waypoints** — per-crew, per-world waypoints.
 
 ## HTTP API
 
