@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: cartobase
+      POSTGRES_PASSWORD: cartobase
+      POSTGRES_DB: cartobase
+    volumes:
+      - cartobase-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cartobase"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cartobase:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://cartobase:cartobase@db:5432/cartobase
+      BIND_ADDR: 0.0.0.0:8080
+      CARTOBASE_ADMIN_TOKEN: ${CARTOBASE_ADMIN_TOKEN:-}
+      CARTOBASE_ADMIN_CREW: ${CARTOBASE_ADMIN_CREW:-default}
+      RUST_LOG: cartobase=info,tower_http=warn
+    ports:
+      - "8080:8080"
+
+volumes:
+  cartobase-db:

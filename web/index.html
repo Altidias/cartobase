@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cartobase</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Cartobase</h1>
+  <div class="auth">
+    <input id="token" type="password" placeholder="admin token" autocomplete="off" />
+    <button id="connect">Connect</button>
+    <span id="status" class="status"></span>
+  </div>
+</header>
+
+<main id="panel" hidden>
+  <section class="cards" id="stats"></section>
+
+  <section>
+    <h2>Chunks by dimension</h2>
+    <table id="dims"><thead><tr><th>World</th><th>Dimension</th><th>Category</th><th>Chunks</th></tr></thead><tbody></tbody></table>
+  </section>
+
+  <section>
+    <h2>Mint token</h2>
+    <form id="mint">
+      <input name="crew" placeholder="crew" required />
+      <input name="player_name" placeholder="player name" required />
+      <select name="role"><option value="member">member</option><option value="admin">admin</option></select>
+      <button type="submit">Mint</button>
+    </form>
+    <pre id="minted" hidden></pre>
+  </section>
+
+  <section>
+    <h2>Tokens</h2>
+    <table id="tokens"><thead><tr><th>Player</th><th>Crew</th><th>Role</th><th>State</th><th></th></tr></thead><tbody></tbody></table>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
